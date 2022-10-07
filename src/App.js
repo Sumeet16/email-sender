@@ -10,7 +10,7 @@ function App() {
 
   const formHandler = async (email) => {
     setsendingState(true)
-    const res = await fetch("https://email-sender-client.herokuapp.com/", {
+    const res = await fetch("https://email-sender-client.herokuapp.com/sendit", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
