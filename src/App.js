@@ -34,7 +34,7 @@ function App() {
   }
 
   const Fetchdata = () => {
-    db.collection("users").get().then((querySnapshot) => {
+    db.collection("test").get().then((querySnapshot) => {
 
       querySnapshot.forEach(element => {
         var data = element.data();
