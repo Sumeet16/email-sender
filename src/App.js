@@ -3,7 +3,8 @@ import './App.css';
 import db from './firebase';
 
 function App() {
-  const [info, setInfo] = useState(['jacoj59237@ishyp.com', 'sumeetishwar1610@gmail.com', 'mywozu@cyclelove.cc', 'wlxpahs874@tmail6.com', 'rutrucudru@vusra.com', 'icnruzfikvh@spacehotline.com']);
+  // const [info, setInfo] = useState(['jacoj59237@ishyp.com', 'sumeetishwar1610@gmail.com', 'mywozu@cyclelove.cc', 'wlxpahs874@tmail6.com', 'rutrucudru@vusra.com', 'icnruzfikvh@spacehotline.com']);
+  const [info, setInfo] = useState([]);
   const [sendingState, setsendingState] = useState(false);
   const [Error, setError] = useState(false);
   const [templateInput, settemplateInput] = useState("");
@@ -32,19 +33,19 @@ function App() {
 
   }
 
-  // const Fetchdata = () => {
-  //   db.collection("users").get().then((querySnapshot) => {
+  const Fetchdata = () => {
+    db.collection("users").get().then((querySnapshot) => {
 
-  //     querySnapshot.forEach(element => {
-  //       var data = element.data();
-  //       setInfo(arr => [...arr, data.email]);
-  //     });
-  //   })
-  // }
+      querySnapshot.forEach(element => {
+        var data = element.data();
+        setInfo(arr => [...arr, data.email]);
+      });
+    })
+  }
 
-  // useEffect(() => {
-  //   Fetchdata()
-  // }, []);
+  useEffect(() => {
+    Fetchdata()
+  }, []);
 
   const inputHandler = (e) => {
     settemplateInput(e.target.value) 
@@ -61,7 +62,7 @@ function App() {
                 <div>
                   <label>Enter the message over here: </label>
                   <textarea name="template" id="template" cols="30" rows="1" onChange={inputHandler}></textarea><br />
-                  <button onClick={() => { formHandler() }}>Send It ‍🚀</button>
+                  <button onClick={() => { Fetchdata(); formHandler(); }}>Send It ‍🚀</button>
                 </div>
               </>
               : <><p>Loading...</p></>
